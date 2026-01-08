@@ -109,24 +109,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
+      {/* Hogwarts background (always mounted) */}
+      <HogwartsBackground />
+
       {/* Lumos entrance animation */}
       <LumosEntrance isRevealed={isRevealed} onComplete={handleEntranceComplete} />
 
       {/* Magic wand cursor (desktop only) */}
       {!isMobile && <MagicCursor />}
-
-      {/* Hogwarts background */}
-      <AnimatePresence>
-        {isRevealed && (
-          <motion.div
-            initial={{ opacity: 0, filter: 'brightness(0)' }}
-            animate={{ opacity: 1, filter: 'brightness(1)' }}
-            transition={{ duration: 2 }}
-          >
-            <HogwartsBackground />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Main content */}
       <AnimatePresence>

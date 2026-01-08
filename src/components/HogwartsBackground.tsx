@@ -4,16 +4,16 @@ export const HogwartsBackground = () => {
   return (
     <div className="fixed inset-0 -z-50 overflow-hidden bg-[#050a14]">
       {/* LAYER 1: Your Local Image (magic.jpg) */}
-      <div
+      <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
-        style={{ backgroundImage: 'url("/ports/magic.jpg")' }}
+        style={{ backgroundImage: 'url("/ports/magic.jpg")' }} 
       />
 
       {/* LAYER 2: The Dark Gradient (To make text readable) */}
-      <div
+      <div 
         className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(5, 10, 20, 0.3) 0%, rgba(5, 10, 20, 0.8) 60%, #050a14 100%)'
+        style={{ 
+          background: 'linear-gradient(to bottom, rgba(5, 10, 20, 0.3) 0%, rgba(5, 10, 20, 0.8) 60%, #050a14 100%)' 
         }}
       />
 
