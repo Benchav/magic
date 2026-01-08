@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 import { BookOpen, Sparkles } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Book {
   id: number;
@@ -29,6 +30,10 @@ const bookColors = [
 
 const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const enableHoverEffects = !isMobile && !shouldReduceMotion;
+
   const [isHovered, setIsHovered] = useState(false);
   const [particles, setParticles] = useState<{ id: number; x: number; y: number }[]>([]);
   const particleId = useRef(0);
@@ -71,20 +76,25 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
     setParticles([]);
   };
 
+  const handleEnter = () => {
+    if (!enableHoverEffects) return;
+    setIsHovered(true);
+  };
+
   return (
     <motion.div
       ref={ref}
       className="relative cursor-pointer perspective-[1000px]"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={enableHoverEffects ? handleMouseMove : undefined}
+      onMouseEnter={enableHoverEffects ? handleEnter : undefined}
+      onMouseLeave={enableHoverEffects ? handleMouseLeave : undefined}
       onClick={onClick}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.15, duration: 0.8 }}
     >
       {/* Magical particles on hover */}
-      {particles.map((particle) => (
+      {enableHoverEffects ? particles.map((particle) => (
         <motion.div
           key={particle.id}
           className="absolute pointer-events-none z-20"
@@ -104,25 +114,25 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
         >
           <Sparkles className="w-4 h-4 text-gold" />
         </motion.div>
-      ))}
+      )) : null}
 
       <motion.div
         className="relative preserve-3d"
         style={{
-          rotateX: isHovered ? rotateX : 0,
-          rotateY: isHovered ? rotateY : 0,
+          rotateX: enableHoverEffects && isHovered ? rotateX : 0,
+          rotateY: enableHoverEffects && isHovered ? rotateY : 0,
           transformStyle: 'preserve-3d',
         }}
         animate={{
-          y: isHovered ? -30 : [0, -5, 0],
-          z: isHovered ? 50 : 0,
-          rotateZ: isHovered ? 0 : [0, 1, 0, -1, 0],
+          y: enableHoverEffects && isHovered ? -30 : (isMobile ? [0, -3, 0] : [0, -5, 0]),
+          z: enableHoverEffects && isHovered ? 50 : 0,
+          rotateZ: enableHoverEffects && isHovered ? 0 : (isMobile ? [0, 0.6, 0, -0.6, 0] : [0, 1, 0, -1, 0]),
         }}
         transition={{
-          y: isHovered
+          y: enableHoverEffects && isHovered
             ? { type: 'spring', stiffness: 200, damping: 20 }
-            : { duration: 5 + index * 0.5, repeat: Infinity, ease: 'easeInOut' },
-          rotateZ: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
+            : { duration: (isMobile ? 9 : 5) + index * 0.5, repeat: Infinity, ease: 'easeInOut' },
+          rotateZ: { duration: isMobile ? 10 : 6, repeat: Infinity, ease: 'easeInOut' },
         }}
       >
         {/* Book glow effect */}

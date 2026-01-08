@@ -1,6 +1,8 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { useMemo } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { X, BookOpen, Download, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Book {
   id: number;
@@ -21,6 +23,37 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
   if (!book) return null;
 
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+
+  const backdropParticles = useMemo(() => {
+    const count = isMobile ? 16 : 30;
+    const colors = [
+      'hsla(43, 80%, 55%, 0.8)',
+      'hsla(280, 60%, 60%, 0.6)',
+      'hsla(200, 70%, 60%, 0.5)',
+    ];
+
+    return Array.from({ length: count }, (_, i) => ({
+      key: `p-${i}`,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      background: colors[i % colors.length],
+      duration: 4 + Math.random() * 4,
+      delay: Math.random() * 4,
+    }));
+  }, [isMobile]);
+
+  const coverSparkles = useMemo(() => {
+    const count = isMobile ? 4 : 6;
+    return Array.from({ length: count }, (_, i) => ({
+      key: `s-${i}`,
+      left: `${20 + Math.random() * 60}%`,
+      top: `${20 + Math.random() * 60}%`,
+      duration: 2 + Math.random(),
+      delay: i * 0.4,
+    }));
+  }, [isMobile]);
 
   const handleRead = () => {
     const params = new URLSearchParams({
@@ -62,31 +95,29 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
             }}
           >
             {/* Magical particles in backdrop */}
-            {[...Array(30)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  background: i % 3 === 0
-                    ? 'hsla(43, 80%, 55%, 0.8)'
-                    : i % 3 === 1
-                      ? 'hsla(280, 60%, 60%, 0.6)'
-                      : 'hsla(200, 70%, 60%, 0.5)',
-                }}
-                animate={{
-                  y: [0, -100, 0],
-                  opacity: [0, 1, 0],
-                  scale: [0, 1.5, 0],
-                }}
-                transition={{
-                  duration: 4 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 4,
-                }}
-              />
-            ))}
+            {!shouldReduceMotion
+              ? backdropParticles.map((p) => (
+                  <motion.div
+                    key={p.key}
+                    className="absolute w-1 h-1 rounded-full"
+                    style={{
+                      left: p.left,
+                      top: p.top,
+                      background: p.background,
+                    }}
+                    animate={{
+                      y: [0, -100, 0],
+                      opacity: [0, 1, 0],
+                      scale: [0, 1.5, 0],
+                    }}
+                    transition={{
+                      duration: p.duration,
+                      repeat: Infinity,
+                      delay: p.delay,
+                    }}
+                  />
+                ))
+              : null}
           </motion.div>
 
           {/* The Grimoire */}
@@ -228,13 +259,13 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                     </div>
 
                     {/* Floating sparkles */}
-                    {[...Array(6)].map((_, i) => (
+                    {coverSparkles.map((s) => (
                       <motion.div
-                        key={i}
+                        key={s.key}
                         className="absolute"
                         style={{
-                          left: `${20 + Math.random() * 60}%`,
-                          top: `${20 + Math.random() * 60}%`,
+                          left: s.left,
+                          top: s.top,
                         }}
                         animate={{
                           y: [0, -20, 0],
@@ -242,9 +273,9 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                           scale: [0.8, 1.2, 0.8],
                         }}
                         transition={{
-                          duration: 2 + Math.random(),
+                          duration: s.duration,
                           repeat: Infinity,
-                          delay: i * 0.4,
+                          delay: s.delay,
                         }}
                       >
                         <Sparkles className="w-4 h-4 text-gold" />

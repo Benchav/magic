@@ -1,17 +1,20 @@
 import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export const HogwartsBackground = () => {
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const particleCount = isMobile ? 12 : 20;
   const particles = useMemo(
     () =>
-      Array.from({ length: 20 }, () => ({
+      Array.from({ length: particleCount }, () => ({
         size: Math.random() * 3 + 1,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         duration: Math.random() * 10 + 10,
       })),
-    []
+    [particleCount]
   );
 
   return (

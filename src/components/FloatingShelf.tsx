@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import MagicBook from './MagicBook';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Book {
   id: number;
@@ -17,6 +18,8 @@ interface FloatingShelfProps {
 
 const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) => {
   const isEven = shelfIndex % 2 === 0;
+  const isMobile = useIsMobile();
+  const chainLinks = isMobile ? 5 : 8;
 
   return (
     <motion.div
@@ -33,7 +36,7 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
     >
       {/* Brass chains */}
       <div className="absolute -top-24 md:-top-32 left-2 md:left-8 w-2 md:w-3 h-28 md:h-36 flex flex-col items-center">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(chainLinks)].map((_, i) => (
           <motion.div
             key={`left-${i}`}
             className="brass-chain w-2 md:w-3 h-3 md:h-4 rounded-full mb-0.5"
@@ -44,7 +47,7 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
               rotateZ: [0, 1, 0, -1, 0],
             }}
             transition={{
-              duration: 4,
+              duration: isMobile ? 7 : 4,
               repeat: Infinity,
               delay: i * 0.1,
             }}
@@ -52,7 +55,7 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
         ))}
       </div>
       <div className="absolute -top-24 md:-top-32 right-2 md:right-8 w-2 md:w-3 h-28 md:h-36 flex flex-col items-center">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(chainLinks)].map((_, i) => (
           <motion.div
             key={`right-${i}`}
             className="brass-chain w-2 md:w-3 h-3 md:h-4 rounded-full mb-0.5"
@@ -63,7 +66,7 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
               rotateZ: [0, -1, 0, 1, 0],
             }}
             transition={{
-              duration: 4,
+              duration: isMobile ? 7 : 4,
               repeat: Infinity,
               delay: i * 0.1,
             }}
@@ -75,11 +78,13 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
       <motion.div
         className="relative"
         animate={{
-          y: [0, -4, 0, -2, 0],
-          rotateZ: isEven ? [0, 0.3, 0, -0.3, 0] : [0, -0.3, 0, 0.3, 0],
+          y: isMobile ? [0, -2, 0, -1, 0] : [0, -4, 0, -2, 0],
+          rotateZ: isEven
+            ? (isMobile ? [0, 0.15, 0, -0.15, 0] : [0, 0.3, 0, -0.3, 0])
+            : (isMobile ? [0, -0.15, 0, 0.15, 0] : [0, -0.3, 0, 0.3, 0]),
         }}
         transition={{
-          duration: 8,
+          duration: isMobile ? 12 : 8,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
