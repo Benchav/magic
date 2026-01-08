@@ -6,6 +6,7 @@ interface Book {
   id: number;
   title: string;
   year: number;
+  pdfPath: string;
 }
 
 interface MagicBookProps {
@@ -86,16 +87,16 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
         <motion.div
           key={particle.id}
           className="absolute pointer-events-none z-20"
-          initial={{ 
-            x: particle.x, 
-            y: particle.y, 
-            scale: 1, 
-            opacity: 1 
+          initial={{
+            x: particle.x,
+            y: particle.y,
+            scale: 1,
+            opacity: 1
           }}
-          animate={{ 
-            y: particle.y - 60, 
-            scale: 0, 
-            opacity: 0 
+          animate={{
+            y: particle.y - 60,
+            scale: 0,
+            opacity: 0
           }}
           transition={{ duration: 1 }}
           style={{ left: 0, top: 0 }}
@@ -117,7 +118,7 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
           rotateZ: isHovered ? 0 : [0, 1, 0, -1, 0],
         }}
         transition={{
-          y: isHovered 
+          y: isHovered
             ? { type: 'spring', stiffness: 200, damping: 20 }
             : { duration: 5 + index * 0.5, repeat: Infinity, ease: 'easeInOut' },
           rotateZ: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
@@ -138,7 +139,7 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
         />
 
         {/* The book */}
-        <div 
+        <div
           className={`
             relative w-24 md:w-32 h-36 md:h-48 rounded-r-lg rounded-l-sm
             bg-gradient-to-b ${colors.spine}
@@ -147,8 +148,8 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
           `}
           style={{
             transformStyle: 'preserve-3d',
-            boxShadow: isHovered 
-              ? '0 20px 60px rgba(0,0,0,0.7), 0 0 40px hsla(43, 80%, 55%, 0.3)' 
+            boxShadow: isHovered
+              ? '0 20px 60px rgba(0,0,0,0.7), 0 0 40px hsla(43, 80%, 55%, 0.3)'
               : '0 15px 40px rgba(0,0,0,0.5)',
           }}
         >
@@ -197,7 +198,7 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
           </div>
 
           {/* Book pages edge */}
-          <div 
+          <div
             className="absolute -right-1 top-1 bottom-1 w-2 rounded-r-sm"
             style={{
               background: `linear-gradient(90deg,
@@ -210,7 +211,7 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
           />
 
           {/* 3D side effect */}
-          <div 
+          <div
             className="absolute -left-2 top-0 bottom-0 w-2"
             style={{
               background: `linear-gradient(90deg,
@@ -244,8 +245,8 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
             {/* Faint text lines */}
             <div className="p-3 space-y-1.5">
               {[...Array(8)].map((_, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className="h-0.5 rounded-full opacity-20"
                   style={{
                     width: `${60 + Math.random() * 30}%`,

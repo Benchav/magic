@@ -5,6 +5,7 @@ interface Book {
   id: number;
   title: string;
   year: number;
+  pdfPath: string;
 }
 
 interface GrimoireModalProps {
@@ -17,11 +18,16 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
   if (!book) return null;
 
   const handleRead = () => {
-    alert(`Abriendo grimorio: ${book.title}`);
+    window.open(book.pdfPath, '_blank');
   };
 
   const handleDownload = () => {
-    alert(`Materializando tomo: ${book.title}`);
+    const link = document.createElement('a');
+    link.href = book.pdfPath;
+    link.download = book.pdfPath.split('/').pop() || 'book.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -53,11 +59,11 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  background: i % 3 === 0 
-                    ? 'hsla(43, 80%, 55%, 0.8)' 
-                    : i % 3 === 1 
-                    ? 'hsla(280, 60%, 60%, 0.6)' 
-                    : 'hsla(200, 70%, 60%, 0.5)',
+                  background: i % 3 === 0
+                    ? 'hsla(43, 80%, 55%, 0.8)'
+                    : i % 3 === 1
+                      ? 'hsla(280, 60%, 60%, 0.6)'
+                      : 'hsla(200, 70%, 60%, 0.5)',
                 }}
                 animate={{
                   y: [0, -100, 0],
@@ -82,22 +88,22 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
           >
             <motion.div
               className="relative w-full max-w-5xl pointer-events-auto"
-              initial={{ 
-                scale: 0.3, 
+              initial={{
+                scale: 0.3,
                 rotateY: -90,
                 opacity: 0,
               }}
-              animate={{ 
-                scale: 1, 
+              animate={{
+                scale: 1,
                 rotateY: 0,
                 opacity: 1,
               }}
-              exit={{ 
-                scale: 0.3, 
+              exit={{
+                scale: 0.3,
                 rotateY: 90,
                 opacity: 0,
               }}
-              transition={{ 
+              transition={{
                 type: 'spring',
                 stiffness: 100,
                 damping: 20,
@@ -119,7 +125,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
               </motion.button>
 
               {/* Open book container */}
-              <div 
+              <div
                 className="relative flex flex-col md:flex-row rounded-xl overflow-hidden"
                 style={{
                   background: `
@@ -141,15 +147,14 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                 {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((corner) => (
                   <div
                     key={corner}
-                    className={`absolute w-16 h-16 pointer-events-none ${
-                      corner.includes('top') ? 'top-2' : 'bottom-2'
-                    } ${corner.includes('left') ? 'left-2' : 'right-2'}`}
+                    className={`absolute w-16 h-16 pointer-events-none ${corner.includes('top') ? 'top-2' : 'bottom-2'
+                      } ${corner.includes('left') ? 'left-2' : 'right-2'}`}
                     style={{
                       borderTop: corner.includes('top') ? '2px solid hsla(43, 80%, 55%, 0.4)' : 'none',
                       borderBottom: corner.includes('bottom') ? '2px solid hsla(43, 80%, 55%, 0.4)' : 'none',
                       borderLeft: corner.includes('left') ? '2px solid hsla(43, 80%, 55%, 0.4)' : 'none',
                       borderRight: corner.includes('right') ? '2px solid hsla(43, 80%, 55%, 0.4)' : 'none',
-                      borderRadius: corner.includes('top') 
+                      borderRadius: corner.includes('top')
                         ? corner.includes('left') ? '8px 0 0 0' : '0 8px 0 0'
                         : corner.includes('left') ? '0 0 0 8px' : '0 0 8px 0',
                     }}
@@ -185,7 +190,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                     {/* Book cover decorations */}
                     <div className="absolute inset-4 border-2 border-gold/30 rounded-lg" />
                     <div className="absolute inset-8 border border-gold/20 rounded-lg" />
-                    
+
                     {/* Center emblem */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <motion.div
@@ -228,7 +233,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                     ))}
 
                     {/* Book number */}
-                    <div 
+                    <div
                       className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full font-decorative text-xl text-gold"
                       style={{
                         background: 'hsla(0,0%,0%,0.5)',
@@ -241,7 +246,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                 </motion.div>
 
                 {/* Center spine */}
-                <div 
+                <div
                   className="hidden md:block w-4 bg-gradient-to-r from-transparent via-gold/20 to-transparent"
                   style={{
                     boxShadow: 'inset 0 0 20px hsla(0,0%,0%,0.5)',
@@ -295,8 +300,8 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
                   >
-                    Adéntrate en las páginas de este antiguo grimorio. Los secretos del 
-                    mundo mágico te esperan, escritos con tinta encantada que sólo revela 
+                    Adéntrate en las páginas de este antiguo grimorio. Los secretos del
+                    mundo mágico te esperan, escritos con tinta encantada que sólo revela
                     su verdad a quienes son dignos de su conocimiento.
                   </motion.p>
 
@@ -315,7 +320,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                         background: 'linear-gradient(135deg, hsl(var(--gold-dim)), hsl(var(--gold)), hsl(var(--gold-dim)))',
                         color: 'hsl(var(--night-deep))',
                       }}
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.05,
                         boxShadow: '0 0 40px hsla(43, 80%, 55%, 0.5)',
                       }}
@@ -331,7 +336,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                     <motion.button
                       onClick={handleDownload}
                       className="relative wax-seal-btn w-20 h-20 rounded-full flex flex-col items-center justify-center gap-1"
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.1,
                         rotate: [0, -5, 5, 0],
                       }}

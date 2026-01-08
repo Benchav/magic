@@ -12,17 +12,58 @@ interface Book {
   id: number;
   title: string;
   year: number;
+  pdfPath: string;
 }
 
 const books: Book[] = [
-  { id: 1, title: "Harry Potter y la piedra filosofal", year: 1997 },
-  { id: 2, title: "Harry Potter y la cámara secreta", year: 1998 },
-  { id: 3, title: "Harry Potter y el prisionero de Azkaban", year: 1999 },
-  { id: 4, title: "Harry Potter y el cáliz de fuego", year: 2000 },
-  { id: 5, title: "Harry Potter y la orden del fénix", year: 2003 },
-  { id: 6, title: "Harry Potter y el misterio del príncipe", year: 2005 },
-  { id: 7, title: "Harry Potter y las reliquias de la muerte", year: 2007 },
-  { id: 8, title: "Harry Potter y el legado maldito", year: 2016 },
+  {
+    id: 1,
+    title: "Harry Potter y la piedra filosofal",
+    year: 1997,
+    pdfPath: "/books/1. Harry Potter y la piedra filosofal_J. K. Rowling.pdf"
+  },
+  {
+    id: 2,
+    title: "Harry Potter y la cámara secreta",
+    year: 1998,
+    pdfPath: "/books/2. Harry Potter y la cámara secreta_J. K. Rowling.pdf"
+  },
+  {
+    id: 3,
+    title: "Harry Potter y el prisionero de Azkaban",
+    year: 1999,
+    pdfPath: "/books/3. Harry Potter y el prisionero de Azkaban_J. K. Rowling.pdf"
+  },
+  {
+    id: 4,
+    title: "Harry Potter y el cáliz de fuego",
+    year: 2000,
+    pdfPath: "/books/4. Harry Potter y el cáliz de fuego_J. K. Rowling.pdf"
+  },
+  {
+    id: 5,
+    title: "Harry Potter y la orden del fénix",
+    year: 2003,
+    pdfPath: "/books/5. Harry Potter y la orden del fénix_J. K. Rowling.pdf"
+  },
+  {
+    id: 6,
+    title: "Harry Potter y el misterio del príncipe",
+    year: 2005,
+    pdfPath: "/books/6. Harry Potter y el misterio del príncipe_J. K. Rowling.pdf"
+  },
+  {
+    id: 7,
+    title: "Harry Potter y las reliquias de la muerte",
+    year: 2007,
+    pdfPath: "/books/7. Harry Potter y las reliquias de la muerte_J. K. Rowling.pdf"
+  },
+  {
+    id: 8,
+    title: "Harry Potter y el legado maldito",
+    year: 2016,
+    pdfPath: "/books/8. Harry Potter y el legado maldito_J. Tiffany.pdf"
+  },
 ];
 
 const Index = () => {
@@ -121,7 +162,7 @@ const Index = () => {
                 </motion.p>
 
                 {/* Decorative bottom line */}
-                <motion.div 
+                <motion.div
                   className="mt-8 flex justify-center"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
@@ -155,22 +196,22 @@ const Index = () => {
 
               {/* Desktop: Floating Shelves */}
               <div className="hidden md:block space-y-48 pb-32">
-                <FloatingShelf 
-                  books={shelf1Books} 
-                  shelfIndex={0} 
+                <FloatingShelf
+                  books={shelf1Books}
+                  shelfIndex={0}
                   onBookClick={handleBookClick}
                 />
-                <FloatingShelf 
-                  books={shelf2Books} 
-                  shelfIndex={1} 
+                <FloatingShelf
+                  books={shelf2Books}
+                  shelfIndex={1}
                   onBookClick={handleBookClick}
                 />
               </div>
 
               {/* Mobile: Artifact List */}
               <div className="md:hidden pb-16">
-                <MobileArtifactList 
-                  books={books} 
+                <MobileArtifactList
+                  books={books}
                   onBookClick={handleBookClick}
                 />
               </div>
@@ -196,9 +237,9 @@ const Index = () => {
       </AnimatePresence>
 
       {/* Grimoire Modal */}
-      <GrimoireModal 
-        book={selectedBook} 
-        isOpen={isModalOpen} 
+      <GrimoireModal
+        book={selectedBook}
+        isOpen={isModalOpen}
         onClose={handleCloseModal}
       />
     </div>
