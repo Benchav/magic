@@ -20,49 +20,49 @@ const books: Book[] = [
     id: 1,
     title: "Harry Potter y la piedra filosofal",
     year: 1997,
-    pdfPath: "/books/1. Harry Potter y la piedra filosofal_J. K. Rowling.pdf"
+    pdfPath: "/books/hp1.pdf"
   },
   {
     id: 2,
     title: "Harry Potter y la cámara secreta",
     year: 1998,
-    pdfPath: "/books/2. Harry Potter y la cámara secreta_J. K. Rowling.pdf"
+    pdfPath: "/books/hp2.pdf"
   },
   {
     id: 3,
     title: "Harry Potter y el prisionero de Azkaban",
     year: 1999,
-    pdfPath: "/books/3. Harry Potter y el prisionero de Azkaban_J. K. Rowling.pdf"
+    pdfPath: "/books/hp3.pdf"
   },
   {
     id: 4,
     title: "Harry Potter y el cáliz de fuego",
     year: 2000,
-    pdfPath: "/books/4. Harry Potter y el cáliz de fuego_J. K. Rowling.pdf"
+    pdfPath: "/books/hp4.pdf"
   },
   {
     id: 5,
     title: "Harry Potter y la orden del fénix",
     year: 2003,
-    pdfPath: "/books/5. Harry Potter y la orden del fénix_J. K. Rowling.pdf"
+    pdfPath: "/books/hp5.pdf"
   },
   {
     id: 6,
     title: "Harry Potter y el misterio del príncipe",
     year: 2005,
-    pdfPath: "/books/6. Harry Potter y el misterio del príncipe_J. K. Rowling.pdf"
+    pdfPath: "/books/hp6.pdf"
   },
   {
     id: 7,
     title: "Harry Potter y las reliquias de la muerte",
     year: 2007,
-    pdfPath: "/books/7. Harry Potter y las reliquias de la muerte_J. K. Rowling.pdf"
+    pdfPath: "/books/hp7.pdf"
   },
   {
     id: 8,
     title: "Harry Potter y el legado maldito",
     year: 2016,
-    pdfPath: "/books/8. Harry Potter y el legado maldito_J. Tiffany.pdf"
+    pdfPath: "/books/hp8.pdf"
   },
 ];
 
