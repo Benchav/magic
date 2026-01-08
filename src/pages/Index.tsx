@@ -13,6 +13,7 @@ interface Book {
   title: string;
   year: number;
   pdfPath: string;
+  coverImagePath: string;
 }
 
 const books: Book[] = [
@@ -20,49 +21,57 @@ const books: Book[] = [
     id: 1,
     title: "Harry Potter y la piedra filosofal",
     year: 1997,
-    pdfPath: "/books/hp1.pdf"
+    pdfPath: "/books/hp1.pdf",
+    coverImagePath: "/ports/hp1.jpg"
   },
   {
     id: 2,
     title: "Harry Potter y la cámara secreta",
     year: 1998,
-    pdfPath: "/books/hp2.pdf"
+    pdfPath: "/books/hp2.pdf",
+    coverImagePath: "/ports/hp2.jpg"
   },
   {
     id: 3,
     title: "Harry Potter y el prisionero de Azkaban",
     year: 1999,
-    pdfPath: "/books/hp3.pdf"
+    pdfPath: "/books/hp3.pdf",
+    coverImagePath: "/ports/hp3.jpg"
   },
   {
     id: 4,
     title: "Harry Potter y el cáliz de fuego",
     year: 2000,
-    pdfPath: "/books/hp4.pdf"
+    pdfPath: "/books/hp4.pdf",
+    coverImagePath: "/ports/hp4.jpg"
   },
   {
     id: 5,
     title: "Harry Potter y la orden del fénix",
     year: 2003,
-    pdfPath: "/books/hp5.pdf"
+    pdfPath: "/books/hp5.pdf",
+    coverImagePath: "/ports/hp5.jpg"
   },
   {
     id: 6,
     title: "Harry Potter y el misterio del príncipe",
     year: 2005,
-    pdfPath: "/books/hp6.pdf"
+    pdfPath: "/books/hp6.pdf",
+    coverImagePath: "/ports/hp6.jpg"
   },
   {
     id: 7,
     title: "Harry Potter y las reliquias de la muerte",
     year: 2007,
-    pdfPath: "/books/hp7.pdf"
+    pdfPath: "/books/hp7.pdf",
+    coverImagePath: "/ports/hp7.jpg"
   },
   {
     id: 8,
     title: "Harry Potter y el legado maldito",
     year: 2016,
-    pdfPath: "/books/hp8.pdf"
+    pdfPath: "/books/hp8.pdf",
+    coverImagePath: "/ports/hp8.jpg"
   },
 ];
 

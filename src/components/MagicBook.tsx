@@ -7,6 +7,7 @@ interface Book {
   title: string;
   year: number;
   pdfPath: string;
+  coverImagePath: string;
 }
 
 interface MagicBookProps {
@@ -148,6 +149,9 @@ const MagicBook = ({ book, index, onClick }: MagicBookProps) => {
           `}
           style={{
             transformStyle: 'preserve-3d',
+            backgroundImage: `url(${book.coverImagePath})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             boxShadow: isHovered
               ? '0 20px 60px rgba(0,0,0,0.7), 0 0 40px hsla(43, 80%, 55%, 0.3)'
               : '0 15px 40px rgba(0,0,0,0.5)',

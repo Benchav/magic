@@ -6,6 +6,7 @@ interface Book {
   title: string;
   year: number;
   pdfPath: string;
+  coverImagePath: string;
 }
 
 interface GrimoireModalProps {
@@ -114,7 +115,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
               {/* Close button */}
               <motion.button
                 onClick={onClose}
-                className="absolute -top-4 -right-4 z-20 p-3 rounded-full glass-dark text-parchment hover:text-gold transition-colors"
+                className="z-50 p-3 rounded-full glass-dark text-parchment hover:text-gold transition-colors fixed top-4 right-4 md:absolute md:-top-4 md:-right-4"
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
                 style={{
@@ -126,7 +127,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
 
               {/* Open book container */}
               <div
-                className="relative flex flex-col md:flex-row rounded-xl overflow-hidden"
+                className="relative flex flex-col md:flex-row rounded-xl overflow-hidden max-h-[85vh] md:max-h-none overflow-y-auto md:overflow-visible scrollbar-hide"
                 style={{
                   background: `
                     linear-gradient(135deg,
@@ -187,6 +188,13 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                   >
+                    {/* Cover Image */}
+                    <img
+                      src={book.coverImagePath}
+                      alt={book.title}
+                      className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                    />
+
                     {/* Book cover decorations */}
                     <div className="absolute inset-4 border-2 border-gold/30 rounded-lg" />
                     <div className="absolute inset-8 border border-gold/20 rounded-lg" />

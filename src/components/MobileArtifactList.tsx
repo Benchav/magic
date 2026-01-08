@@ -5,6 +5,7 @@ interface Book {
   id: number;
   title: string;
   year: number;
+  coverImagePath: string;
 }
 
 interface MobileArtifactListProps {
@@ -44,22 +45,22 @@ const MobileArtifactList = ({ books, onBookClick }: MobileArtifactListProps) => 
             whileTap={{ scale: 0.98 }}
           >
             {/* Gradient accent */}
-            <div 
+            <div
               className={`absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b ${bookColors[index % bookColors.length]}`}
             />
 
             <div className="flex items-center gap-4 pl-4">
               {/* Book icon container */}
-              <div 
+              <div
                 className={`
-                  w-14 h-20 rounded-lg flex items-center justify-center
+                  w-14 h-20 rounded-lg flex items-center justify-center overflow-hidden
                   bg-gradient-to-b ${bookColors[index % bookColors.length]}
                 `}
                 style={{
                   boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
                 }}
               >
-                <BookOpen className="w-6 h-6 text-gold/80" />
+                <img src={book.coverImagePath} alt={book.title} className="w-full h-full object-cover" />
               </div>
 
               {/* Content */}
