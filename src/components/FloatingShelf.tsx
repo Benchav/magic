@@ -5,6 +5,8 @@ interface Book {
   id: number;
   title: string;
   year: number;
+  pdfPath: string;
+  coverImagePath: string;
 }
 
 interface FloatingShelfProps {
@@ -18,23 +20,23 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
 
   return (
     <motion.div
-      className="relative mx-auto max-w-5xl"
+      className="relative mx-auto w-[92%] max-w-5xl"
       initial={{ opacity: 0, y: 80 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ 
-        duration: 1.2, 
+      transition={{
+        duration: 1.2,
         delay: shelfIndex * 0.3,
         type: 'spring',
         stiffness: 50,
       }}
     >
       {/* Brass chains */}
-      <div className="absolute -top-32 left-8 w-3 h-36 flex flex-col items-center">
+      <div className="absolute -top-24 md:-top-32 left-2 md:left-8 w-2 md:w-3 h-28 md:h-36 flex flex-col items-center">
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={`left-${i}`}
-            className="brass-chain w-3 h-4 rounded-full mb-0.5"
+            className="brass-chain w-2 md:w-3 h-3 md:h-4 rounded-full mb-0.5"
             style={{
               boxShadow: 'inset 0 1px 2px hsla(0,0%,100%,0.3), 0 2px 4px hsla(0,0%,0%,0.5)',
             }}
@@ -49,11 +51,11 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
           />
         ))}
       </div>
-      <div className="absolute -top-32 right-8 w-3 h-36 flex flex-col items-center">
+      <div className="absolute -top-24 md:-top-32 right-2 md:right-8 w-2 md:w-3 h-28 md:h-36 flex flex-col items-center">
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={`right-${i}`}
-            className="brass-chain w-3 h-4 rounded-full mb-0.5"
+            className="brass-chain w-2 md:w-3 h-3 md:h-4 rounded-full mb-0.5"
             style={{
               boxShadow: 'inset 0 1px 2px hsla(0,0%,100%,0.3), 0 2px 4px hsla(0,0%,0%,0.5)',
             }}
@@ -83,7 +85,7 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
         }}
       >
         {/* Shelf top surface */}
-        <div 
+        <div
           className="wood-texture h-6 rounded-t-lg relative"
           style={{
             boxShadow: `
@@ -97,7 +99,7 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
         </div>
 
         {/* Books container */}
-        <div 
+        <div
           className="wood-texture py-8 px-4 md:px-8"
           style={{
             boxShadow: 'inset 0 -4px 8px hsla(0,0%,0%,0.3)',
@@ -116,7 +118,7 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
         </div>
 
         {/* Shelf bottom edge */}
-        <div 
+        <div
           className="wood-texture h-4 rounded-b-lg"
           style={{
             boxShadow: `
@@ -130,7 +132,7 @@ const FloatingShelf = ({ books, shelfIndex, onBookClick }: FloatingShelfProps) =
         </div>
 
         {/* Decorative brass brackets */}
-        <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-20 brass-chain rounded-full opacity-60" 
+        <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-20 brass-chain rounded-full opacity-60"
           style={{ boxShadow: '2px 0 10px hsla(0,0%,0%,0.5)' }}
         />
         <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-20 brass-chain rounded-full opacity-60"

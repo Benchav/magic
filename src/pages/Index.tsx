@@ -4,7 +4,6 @@ import { Wand2, BookOpen } from 'lucide-react';
 import MagicCursor from '@/components/MagicCursor';
 import DefinitiveHogwartsBackground from '@/components/DefinitiveHogwartsBackground';
 import FloatingShelf from '@/components/FloatingShelf';
-import MobileArtifactList from '@/components/MobileArtifactList';
 import GrimoireModal from '@/components/GrimoireModal';
 import LumosEntrance from '@/components/LumosEntrance';
 
@@ -203,8 +202,8 @@ const Index = () => {
                 </h3>
               </motion.div>
 
-              {/* Desktop: Floating Shelves */}
-              <div className="hidden md:block space-y-48 pb-32">
+              {/* Floating Shelves (Responsive) */}
+              <div className="space-y-32 md:space-y-48 pb-32">
                 <FloatingShelf
                   books={shelf1Books}
                   shelfIndex={0}
@@ -213,14 +212,6 @@ const Index = () => {
                 <FloatingShelf
                   books={shelf2Books}
                   shelfIndex={1}
-                  onBookClick={handleBookClick}
-                />
-              </div>
-
-              {/* Mobile: Artifact List */}
-              <div className="md:hidden pb-16">
-                <MobileArtifactList
-                  books={books}
                   onBookClick={handleBookClick}
                 />
               </div>
