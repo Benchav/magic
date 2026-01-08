@@ -60,12 +60,12 @@ const PdfReader = () => {
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <header className="sticky top-0 z-20 border-b border-gold/10 bg-background/80 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <div className="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
             <div className="font-cinzel text-sm text-gold/80">Lectura</div>
             <div className="truncate font-cinzel text-base text-parchment">{title}</div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center justify-start gap-3 sm:justify-end">
             {readUrl ? (
               <a
                 href={readUrl}
@@ -103,7 +103,7 @@ const PdfReader = () => {
             <iframe
               title={title}
               src={readUrl}
-              className="h-[80vh] w-full"
+              className="h-[calc(100dvh-160px)] w-full sm:h-[80vh]"
               allow="fullscreen"
             />
           </div>

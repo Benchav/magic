@@ -60,7 +60,13 @@ const MobileArtifactList = ({ books, onBookClick }: MobileArtifactListProps) => 
                   boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
                 }}
               >
-                <img src={book.coverImagePath} alt={book.title} className="w-full h-full object-cover" />
+                <img
+                  src={book.coverImagePath}
+                  alt={book.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Content */}

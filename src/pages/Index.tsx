@@ -224,8 +224,8 @@ const Index = () => {
                 </h3>
               </motion.div>
 
-              {/* Floating Shelves (Responsive) */}
-              <div className="space-y-32 md:space-y-48 pb-32">
+              {/* Floating Shelves (also on mobile) */}
+              <div className="space-y-20 sm:space-y-24 md:space-y-48 pb-20 md:pb-32">
                 <FloatingShelf
                   books={shelf1Books}
                   shelfIndex={0}

@@ -1,8 +1,21 @@
-import { motion } from 'framer-motion';
+import { useMemo } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export const HogwartsBackground = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }, () => ({
+        size: Math.random() * 3 + 1,
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        duration: Math.random() * 10 + 10,
+      })),
+    []
+  );
+
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden bg-[#050a14] pointer-events-none">
+    <div className="fixed inset-0 z-0 overflow-hidden bg-background pointer-events-none">
       {/* LAYER 1: Your Local Image (magic.jpg) */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
@@ -18,29 +31,31 @@ export const HogwartsBackground = () => {
       />
 
       {/* LAYER 3: Simple Magic Particles (Optional but elegant) */}
-      <div className="absolute inset-0 opacity-30">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-yellow-200 rounded-full blur-[1px]"
-            style={{
-              width: Math.random() * 3 + 1,
-              height: Math.random() * 3 + 1,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -100],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
+      {!shouldReduceMotion ? (
+        <div className="absolute inset-0 opacity-30">
+          {particles.map((p, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full blur-[1px] bg-yellow-200"
+              style={{
+                width: p.size,
+                height: p.size,
+                left: p.left,
+                top: p.top,
+              }}
+              animate={{
+                y: [0, -100],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: p.duration,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+            />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 };

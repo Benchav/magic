@@ -173,7 +173,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
 
                 {/* Left page - Book cover art */}
                 <motion.div
-                  className="flex-1 p-8 md:p-12 flex items-center justify-center"
+                  className="flex-1 p-6 sm:p-8 md:p-12 flex items-center justify-center"
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
@@ -201,6 +201,8 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
                     <img
                       src={book.coverImagePath}
                       alt={book.title}
+                      loading="lazy"
+                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover rounded-lg"
                     />
 
@@ -272,7 +274,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
 
                 {/* Right page - Content */}
                 <motion.div
-                  className="flex-1 p-8 md:p-12 flex flex-col justify-center"
+                  className="flex-1 p-6 sm:p-8 md:p-12 flex flex-col justify-center"
                   initial={{ x: 50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
