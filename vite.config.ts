@@ -16,9 +16,9 @@ export default defineConfig(({ mode }) => ({
       registerType: "autoUpdate",
       includeAssets: ["robots.txt"],
       manifest: {
-        name: "Magia App",
-        short_name: "Magia",
-        description: "Magia Application",
+        name: "lomus-jb",
+        short_name: "lomus-jb",
+        description: "lomus-jb",
         start_url: "/",
         scope: "/",
         display: "standalone",

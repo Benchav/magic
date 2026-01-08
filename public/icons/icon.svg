@@ -1,15 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Magia">
   <defs>
-    <radialGradient id="g" cx="50%" cy="35%" r="70%">
-      <stop offset="0%" stop-color="#f6d365" stop-opacity="1"/>
-      <stop offset="45%" stop-color="#050a14" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#050a14" stop-opacity="1"/>
+    <radialGradient id="bg" cx="40%" cy="30%" r="85%">
+      <stop offset="0%" stop-color="#0b1530"/>
+      <stop offset="55%" stop-color="#050a14"/>
+      <stop offset="100%" stop-color="#050a14"/>
     </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff2b6"/>
+      <stop offset="40%" stop-color="#f6d365"/>
+      <stop offset="100%" stop-color="#caa23a"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.65 0" result="g"/>
+      <feMerge>
+        <feMergeNode in="g"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <rect width="512" height="512" rx="112" fill="url(#g)"/>
-  <g fill="#f6d365">
-    <path d="M256 92l18 44 44 18-44 18-18 44-18-44-44-18 44-18z" opacity="0.9"/>
-    <path d="M342 172l12 30 30 12-30 12-12 30-12-30-30-12 30-12z" opacity="0.75"/>
-    <path d="M170 200l10 24 24 10-24 10-10 24-10-24-24-10 24-10z" opacity="0.75"/>
+
+  <!-- Maskable-safe background -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- Subtle vignette -->
+  <path d="M52 256c0-150 54-204 204-204s204 54 204 204-54 204-204 204S52 406 52 256Z" fill="#000" opacity="0.22"/>
+
+  <!-- Crescent moon -->
+  <path
+    d="M356 122c-26 10-44 36-44 66 0 39 31 70 70 70 14 0 27-4 38-11-11 34-43 58-81 58-48 0-87-39-87-87 0-42 30-77 69-86 12-3 24-3 35 0Z"
+    fill="url(#gold)"
+    opacity="0.9"
+    filter="url(#glow)"
+  />
+
+  <!-- Wand (diagonal) -->
+  <g transform="rotate(-28 256 256)" filter="url(#glow)">
+    <rect x="116" y="292" width="310" height="20" rx="10" fill="url(#gold)"/>
+    <rect x="116" y="292" width="78" height="20" rx="10" fill="#8b6b1a" opacity="0.7"/>
+    <circle cx="414" cy="302" r="10" fill="#fff2b6"/>
+  </g>
+
+  <!-- Sparkles -->
+  <g fill="url(#gold)" opacity="0.95" filter="url(#glow)">
+    <path d="M206 170l12 28 28 12-28 12-12 28-12-28-28-12 28-12z"/>
+    <path d="M148 228l8 18 18 8-18 8-8 18-8-18-18-8 18-8z" opacity="0.85"/>
+    <path d="M290 232l9 21 21 9-21 9-9 21-9-21-21-9 21-9z" opacity="0.85"/>
+    <path d="M236 316l7 16 16 7-16 7-7 16-7-16-16-7 16-7z" opacity="0.75"/>
+  </g>
+
+  <!-- Tiny stars -->
+  <g fill="#fff2b6" opacity="0.5">
+    <circle cx="120" cy="146" r="3"/>
+    <circle cx="98" cy="206" r="2.5"/>
+    <circle cx="170" cy="120" r="2"/>
+    <circle cx="420" cy="178" r="2.5"/>
+    <circle cx="402" cy="236" r="2"/>
+    <circle cx="344" cy="96" r="2"/>
   </g>
 </svg>
