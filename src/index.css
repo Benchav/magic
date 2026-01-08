@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Hogwarts Night Palette */
+    --background: 225 50% 3%;
+    --foreground: 45 50% 92%;
+
+    --card: 225 45% 6%;
+    --card-foreground: 45 50% 92%;
+
+    --popover: 225 45% 5%;
+    --popover-foreground: 45 50% 92%;
+
+    --primary: 43 80% 55%;
+    --primary-foreground: 225 50% 5%;
+
+    --secondary: 160 55% 30%;
+    --secondary-foreground: 45 50% 95%;
+
+    --muted: 225 35% 12%;
+    --muted-foreground: 45 25% 55%;
+
+    --accent: 280 60% 45%;
+    --accent-foreground: 45 50% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 43 40% 20%;
+    --input: 225 35% 10%;
+    --ring: 43 80% 55%;
+
+    --radius: 0.75rem;
+
+    /* Deep magical colors */
+    --night-sky: 225 50% 3%;
+    --night-deep: 230 55% 2%;
+    --castle-stone: 220 15% 18%;
+    --castle-dark: 220 20% 10%;
+    --gold: 43 80% 55%;
+    --gold-bright: 45 90% 65%;
+    --gold-dim: 40 70% 40%;
+    --emerald: 160 55% 30%;
+    --emerald-glow: 160 70% 50%;
+    --aurora-purple: 280 60% 45%;
+    --aurora-blue: 200 70% 50%;
+    --candle-orange: 30 100% 60%;
+    --candle-yellow: 45 100% 70%;
+    --parchment: 45 50% 92%;
+    --parchment-aged: 40 40% 80%;
+    --wood-dark: 25 40% 15%;
+    --wood-medium: 28 35% 25%;
+    --brass: 38 60% 45%;
+    --leather-dark: 20 50% 12%;
+    --leather-medium: 22 45% 20%;
+
+    /* Magical shadows */
+    --shadow-gold-glow: 0 0 60px hsla(43, 80%, 55%, 0.4);
+    --shadow-aurora: 0 0 100px hsla(280, 60%, 45%, 0.3);
+    --shadow-candle: 0 0 30px hsla(30, 100%, 60%, 0.5);
+    --shadow-deep: 0 25px 80px hsla(0, 0%, 0%, 0.8);
+    --shadow-book: 0 15px 40px hsla(0, 0%, 0%, 0.6), 0 5px 15px hsla(0, 0%, 0%, 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    font-family: 'Cormorant Garamond', serif;
+    background: hsl(var(--night-deep));
+    cursor: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel Decorative', serif;
+  }
+
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-decorative {
+    font-family: 'Cinzel Decorative', serif;
+  }
+}
+
+@layer components {
+  /* Atmospheric glass */
+  .glass-dark {
+    background: hsla(225, 45%, 6%, 0.6);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid hsla(43, 80%, 55%, 0.15);
+  }
+
+  /* Glowing text effects */
+  .text-glow-gold {
+    text-shadow: 
+      0 0 10px hsla(43, 80%, 55%, 0.8),
+      0 0 30px hsla(43, 80%, 55%, 0.5),
+      0 0 60px hsla(43, 80%, 55%, 0.3);
+  }
+
+  .text-glow-aurora {
+    text-shadow: 
+      0 0 15px hsla(280, 60%, 45%, 0.8),
+      0 0 40px hsla(200, 70%, 50%, 0.5);
+  }
+
+  /* Wood texture simulation */
+  .wood-texture {
+    background: 
+      linear-gradient(90deg, 
+        hsla(28, 35%, 22%, 0.8) 0%,
+        hsla(25, 40%, 18%, 0.9) 20%,
+        hsla(28, 35%, 25%, 0.7) 40%,
+        hsla(25, 40%, 15%, 0.95) 60%,
+        hsla(28, 35%, 20%, 0.85) 80%,
+        hsla(25, 40%, 17%, 0.9) 100%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        hsla(25, 30%, 20%, 0.3) 0px,
+        transparent 1px,
+        transparent 3px
+      );
+  }
+
+  /* Leather book cover */
+  .leather-cover {
+    background: 
+      radial-gradient(ellipse at 30% 30%, hsla(22, 45%, 25%, 1), transparent 50%),
+      linear-gradient(135deg, 
+        hsl(20, 50%, 14%) 0%,
+        hsl(22, 45%, 18%) 50%,
+        hsl(20, 50%, 12%) 100%
+      );
+  }
+
+  /* Brass chain appearance */
+  .brass-chain {
+    background: linear-gradient(180deg,
+      hsl(38, 60%, 50%) 0%,
+      hsl(38, 50%, 35%) 30%,
+      hsl(38, 60%, 45%) 50%,
+      hsl(38, 50%, 30%) 70%,
+      hsl(38, 60%, 50%) 100%
+    );
+  }
+
+  /* Runic button glow */
+  .runic-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .runic-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, 
+      hsl(var(--gold)) 0%,
+      hsl(var(--aurora-purple)) 25%,
+      hsl(var(--gold)) 50%,
+      hsl(var(--emerald)) 75%,
+      hsl(var(--gold)) 100%
+    );
+    background-size: 400% 400%;
+    animation: runic-shimmer 3s linear infinite;
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(4px);
+  }
+
+  @keyframes runic-shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Wax seal break animation */
+  .wax-seal-btn {
+    position: relative;
+    background: radial-gradient(circle at 35% 35%, 
+      hsl(0, 60%, 40%), 
+      hsl(0, 70%, 25%) 60%,
+      hsl(0, 65%, 20%)
+    );
+    box-shadow: 
+      inset 0 -6px 12px hsla(0, 0%, 0%, 0.4),
+      inset 0 6px 12px hsla(0, 100%, 60%, 0.2),
+      0 8px 25px hsla(0, 0%, 0%, 0.6);
+  }
+
+  .wax-seal-btn::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 35%;
+    height: 35%;
+    background: radial-gradient(circle, hsla(0, 100%, 70%, 0.4), transparent);
+    border-radius: 50%;
+  }
+
+  /* Hide scrollbar but allow scroll */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom scrollbar for main content */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--night-deep));
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(var(--gold-dim)), hsl(var(--gold)));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold-bright));
+}
