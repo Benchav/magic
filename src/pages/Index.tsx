@@ -11,6 +11,7 @@ interface Book {
   title: string;
   year: number;
   pdfPath: string;
+  downloadUrl: string;
   coverImagePath: string;
 }
 
@@ -19,56 +20,64 @@ const books: Book[] = [
     id: 1,
     title: "Harry Potter y la piedra filosofal",
     year: 1997,
-    pdfPath: "/books/hp1.pdf",
+    pdfPath: "https://drive.google.com/file/d/1TMRvdpJhlgkLIaflryYcc2D480J-hm8U/preview",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=1TMRvdpJhlgkLIaflryYcc2D480J-hm8U",
     coverImagePath: "/ports/hp1.jpg"
   },
   {
     id: 2,
     title: "Harry Potter y la cámara secreta",
     year: 1998,
-    pdfPath: "/books/hp2.pdf",
+    pdfPath: "https://drive.google.com/file/d/12jZqF731zCe1MxMXGJ1xxIFGBawZLJM1/preview",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=12jZqF731zCe1MxMXGJ1xxIFGBawZLJM1",
     coverImagePath: "/ports/hp2.jpg"
   },
   {
     id: 3,
     title: "Harry Potter y el prisionero de Azkaban",
     year: 1999,
-    pdfPath: "/books/hp3.pdf",
+    pdfPath: "https://drive.google.com/file/d/1TUS0nqJ14FrsVwOqT3_rDk8lCqpgL5go/preview",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=1TUS0nqJ14FrsVwOqT3_rDk8lCqpgL5go",
     coverImagePath: "/ports/hp3.jpg"
   },
   {
     id: 4,
     title: "Harry Potter y el cáliz de fuego",
     year: 2000,
-    pdfPath: "/books/hp4.pdf",
+    pdfPath: "https://drive.google.com/file/d/1fD7t9bxF2RHvm7PTsQEUvViqjjEKfVp1/preview",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=1fD7t9bxF2RHvm7PTsQEUvViqjjEKfVp1",
     coverImagePath: "/ports/hp4.jpg"
   },
   {
     id: 5,
     title: "Harry Potter y la orden del fénix",
     year: 2003,
-    pdfPath: "/books/hp5.pdf",
+    pdfPath: "https://drive.google.com/file/d/1nyP2cKgYLTtTOu5GHDEVBEyFXExZxAxN/preview",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=1nyP2cKgYLTtTOu5GHDEVBEyFXExZxAxN",
     coverImagePath: "/ports/hp5.jpg"
   },
   {
     id: 6,
     title: "Harry Potter y el misterio del príncipe",
     year: 2005,
-    pdfPath: "/books/hp6.pdf",
+    pdfPath: "https://drive.google.com/file/d/1ZduVvXaGJPQD7xnAKiOwTTjQKsJnKmjO/preview",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=1ZduVvXaGJPQD7xnAKiOwTTjQKsJnKmjO",
     coverImagePath: "/ports/hp6.jpg"
   },
   {
     id: 7,
     title: "Harry Potter y las reliquias de la muerte",
     year: 2007,
-    pdfPath: "/books/hp7.pdf",
+    pdfPath: "https://drive.google.com/file/d/1rQ4HG5kBDX2v0ss6Y1jfIPUKliFmj57v/preview",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=1rQ4HG5kBDX2v0ss6Y1jfIPUKliFmj57v",
     coverImagePath: "/ports/hp7.jpg"
   },
   {
     id: 8,
     title: "Harry Potter y el legado maldito",
     year: 2016,
-    pdfPath: "/books/hp8.pdf",
+    pdfPath: "https://drive.google.com/file/d/1lO6JK2hmw1e3anEjXCYRq69w0x7XozSP/preview",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=1lO6JK2hmw1e3anEjXCYRq69w0x7XozSP",
     coverImagePath: "/ports/hp8.jpg"
   },
 ];

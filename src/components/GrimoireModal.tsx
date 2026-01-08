@@ -7,6 +7,7 @@ interface Book {
   title: string;
   year: number;
   pdfPath: string;
+  downloadUrl: string;
   coverImagePath: string;
 }
 
@@ -31,8 +32,8 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = book.pdfPath;
-    link.download = book.pdfPath.split('/').pop() || 'book.pdf';
+    link.href = book.downloadUrl || book.pdfPath;
+    link.download = `${book.title}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
