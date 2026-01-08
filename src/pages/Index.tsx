@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, BookOpen } from 'lucide-react';
 import MagicCursor from '@/components/MagicCursor';
-import HogwartsBackground from '@/components/HogwartsBackground';
+import InteractiveHogwartsBackground from '@/components/InteractiveHogwartsBackground';
 import FloatingShelf from '@/components/FloatingShelf';
 import MobileArtifactList from '@/components/MobileArtifactList';
 import GrimoireModal from '@/components/GrimoireModal';
@@ -124,7 +124,7 @@ const Index = () => {
             animate={{ opacity: 1, filter: 'brightness(1)' }}
             transition={{ duration: 2 }}
           >
-            <HogwartsBackground />
+            <InteractiveHogwartsBackground />
           </motion.div>
         )}
       </AnimatePresence>
@@ -133,7 +133,7 @@ const Index = () => {
       <AnimatePresence>
         {contentVisible && (
           <motion.main
-            className="relative z-10 min-h-screen"
+            className="relative z-10 min-h-screen bg-transparent"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
