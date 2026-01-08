@@ -51,7 +51,13 @@ export default defineConfig(({ mode }) => ({
             urlPattern: ({ url }) => url.pathname.startsWith("/books/"),
             handler: "CacheFirst",
             options: {
-              cacheName: "books-pdfs",
+              cacheName: "books-pdfs-v2",
+              cacheableResponse: {
+                statuses: [200],
+                headers: {
+                  "Content-Type": "application/pdf",
+                },
+              },
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
