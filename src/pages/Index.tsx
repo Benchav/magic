@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, BookOpen } from 'lucide-react';
+import { Wand2, BookOpen } from 'lucide-react';
 import MagicCursor from '@/components/MagicCursor';
-import InteractiveHogwartsBackground from '@/components/InteractiveHogwartsBackground';
+import DefinitiveHogwartsBackground from '@/components/DefinitiveHogwartsBackground';
 import FloatingShelf from '@/components/FloatingShelf';
 import MobileArtifactList from '@/components/MobileArtifactList';
 import GrimoireModal from '@/components/GrimoireModal';
@@ -124,7 +124,7 @@ const Index = () => {
             animate={{ opacity: 1, filter: 'brightness(1)' }}
             transition={{ duration: 2 }}
           >
-            <InteractiveHogwartsBackground />
+            <DefinitiveHogwartsBackground />
           </motion.div>
         )}
       </AnimatePresence>
@@ -148,7 +148,7 @@ const Index = () => {
                 {/* Decorative line */}
                 <div className="flex justify-center items-center gap-4 mb-6">
                   <div className="w-16 md:w-32 h-px bg-gradient-to-r from-transparent to-gold/60" />
-                  <Sparkles className="w-5 h-5 text-gold animate-pulse" />
+                  <Wand2 className="w-5 h-5 text-gold animate-pulse" />
                   <div className="w-16 md:w-32 h-px bg-gradient-to-l from-transparent to-gold/60" />
                 </div>
 
