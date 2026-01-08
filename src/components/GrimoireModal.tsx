@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen, Download, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface Book {
   id: number;
@@ -18,8 +19,14 @@ interface GrimoireModalProps {
 const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
   if (!book) return null;
 
+  const navigate = useNavigate();
+
   const handleRead = () => {
-    window.open(book.pdfPath, '_blank');
+    const params = new URLSearchParams({
+      src: book.pdfPath,
+      title: book.title,
+    });
+    navigate(`/read?${params.toString()}`);
   };
 
   const handleDownload = () => {
