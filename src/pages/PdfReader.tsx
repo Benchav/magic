@@ -26,6 +26,7 @@ const PdfReader = () => {
   const [containerWidth, setContainerWidth] = useState<number>(900);
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
+  const [loadError, setLoadError] = useState<string>("");
 
   useEffect(() => {
     const el = containerRef.current;
@@ -44,6 +45,8 @@ const PdfReader = () => {
 
   useEffect(() => {
     setPageNumber(1);
+    setNumPages(0);
+    setLoadError("");
   }, [pdfSrc]);
 
   return (
@@ -118,8 +121,19 @@ const PdfReader = () => {
                 error={
                   <div className="font-body text-parchment-aged">
                     No se pudo renderizar el PDF aquí. Usa “Abrir” o “Descargar”.
+                    {loadError ? (
+                      <div className="mt-3 whitespace-pre-wrap text-xs text-parchment-aged/80">
+                        {loadError}
+                      </div>
+                    ) : null}
                   </div>
                 }
+                onLoadError={(err) => {
+                  setLoadError(String(err?.message || err));
+                }}
+                onSourceError={(err) => {
+                  setLoadError(String(err?.message || err));
+                }}
                 onLoadSuccess={(info) => {
                   setNumPages(info.numPages);
                   setPageNumber(1);
