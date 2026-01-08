@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Wand2, BookOpen } from 'lucide-react';
 import MagicCursor from '@/components/MagicCursor';
-import { HogwartsBackground } from '@/components/HogwartsBackground';
 import FloatingShelf from '@/components/FloatingShelf';
 import GrimoireModal from '@/components/GrimoireModal';
 import LumosEntrance from '@/components/LumosEntrance';
@@ -109,9 +108,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
-      {/* Hogwarts background (always mounted) */}
-      <HogwartsBackground />
-
       {/* Lumos entrance animation */}
       <LumosEntrance isRevealed={isRevealed} onComplete={handleEntranceComplete} />
 

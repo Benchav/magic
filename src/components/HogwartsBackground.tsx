@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export const HogwartsBackground = () => {
   return (
-    <div className="fixed inset-0 -z-50 overflow-hidden bg-[#050a14]">
+    <div className="fixed inset-0 z-0 overflow-hidden bg-[#050a14] pointer-events-none">
       {/* LAYER 1: Your Local Image (magic.jpg) */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
