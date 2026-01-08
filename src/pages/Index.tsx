@@ -5,6 +5,7 @@ import MagicCursor from '@/components/MagicCursor';
 import FloatingShelf from '@/components/FloatingShelf';
 import GrimoireModal from '@/components/GrimoireModal';
 import LumosEntrance from '@/components/LumosEntrance';
+import { useSearchParams } from 'react-router-dom';
 
 interface Book {
   id: number;
@@ -88,6 +89,7 @@ const Index = () => {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -95,6 +97,23 @@ const Index = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  useEffect(() => {
+    const bookParam = searchParams.get('book');
+    if (!bookParam) return;
+
+    const id = Number(bookParam);
+    if (!Number.isFinite(id)) return;
+
+    const book = books.find((b) => b.id === id);
+    if (!book) return;
+
+    // Ensure the page content is visible when returning from the reader.
+    setIsRevealed(true);
+    setContentVisible(true);
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  }, [searchParams]);
 
   const handleEntranceComplete = () => {
     setIsRevealed(true);
@@ -104,11 +123,19 @@ const Index = () => {
   const handleBookClick = (book: Book) => {
     setSelectedBook(book);
     setIsModalOpen(true);
+
+    const next = new URLSearchParams(searchParams);
+    next.set('book', String(book.id));
+    setSearchParams(next);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedBook(null), 500);
+
+    const next = new URLSearchParams(searchParams);
+    next.delete('book');
+    setSearchParams(next);
   };
 
   // Split books into two shelves

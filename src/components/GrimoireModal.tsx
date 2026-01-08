@@ -26,6 +26,7 @@ const GrimoireModal = ({ book, isOpen, onClose }: GrimoireModalProps) => {
     const params = new URLSearchParams({
       src: book.pdfPath,
       title: book.title,
+      returnTo: `/?book=${book.id}`,
     });
     navigate(`/read?${params.toString()}`);
   };

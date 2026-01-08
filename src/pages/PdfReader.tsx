@@ -45,6 +45,11 @@ const PdfReader = () => {
   }, [src]);
 
   const handleBack = () => {
+    const returnTo = searchParams.get("returnTo");
+    if (returnTo) {
+      navigate(returnTo);
+      return;
+    }
     if (window.history.length > 1) {
       navigate(-1);
       return;
