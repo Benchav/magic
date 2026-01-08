@@ -75,12 +75,13 @@
 
   html {
     scroll-behavior: smooth;
+    background-color: hsl(var(--background));
   }
 
   body {
     @apply text-foreground antialiased overflow-x-hidden;
     font-family: 'Cormorant Garamond', serif;
-    background-color: transparent !important;
+    background-color: hsl(var(--background));
     cursor: none;
   }
 
