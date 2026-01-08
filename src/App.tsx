@@ -6,12 +6,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PdfReader from "./pages/PdfReader";
+import { HogwartsBackground } from "@/components/HogwartsBackground";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <HogwartsBackground />
       <Toaster />
       <Sonner />
       <BrowserRouter>

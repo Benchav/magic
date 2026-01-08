@@ -14,7 +14,7 @@ const PdfReader = () => {
   }, [src]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-transparent text-foreground">
       <header className="sticky top-0 z-20 border-b border-gold/10 bg-background/80 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <div className="min-w-0">
