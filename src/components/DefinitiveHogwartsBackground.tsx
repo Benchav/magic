@@ -43,16 +43,19 @@ export const DefinitiveHogwartsBackground = () => {
 
     return (
         <div className="fixed inset-0 -z-50 overflow-hidden">
+            {/* LAYER 0: Failsafe Black Background */}
+            <div className="absolute inset-0 bg-[#050a14]" />
+
             {/* LAYER 1: The Castle Image */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1618944847023-38aa001235f0?q=80&w=1920&auto=format&fit=crop")' }}
+                style={{ backgroundImage: 'url("/ports/magic.jpg")' }}
             />
 
             {/* LAYER 2: The Readability Overlay (Dark Gradient) */}
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(to bottom, rgba(5, 12, 24, 0.4) 0%, rgba(5, 12, 24, 0.95) 70%, #050c18 100%)' }}
+                style={{ background: 'linear-gradient(to bottom, rgba(5, 12, 24, 0.2) 0%, rgba(5, 12, 24, 0.9) 75%, #050c18 100%)' }}
             />
 
             {/* LAYER 3: Interactive Falling Magic */}
