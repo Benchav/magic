@@ -1,47 +1,42 @@
 import { motion } from 'framer-motion';
 
-const HogwartsBackground = () => {
+export const HogwartsBackground = () => {
   return (
-    <div className="fixed inset-0 overflow-hidden -z-10">
-      {/* Background Image */}
+    <div className="fixed inset-0 -z-50 overflow-hidden bg-[#050a14]">
+      {/* LAYER 1: Your Local Image (magic.jpg) */}
       <div
-        className="absolute inset-0 transition-opacity duration-1000"
-        style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1618944847023-38aa001235f0?q=80&w=1920&auto=format&fit=crop)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
+        style={{ backgroundImage: 'url("/ports/magic.jpg")' }}
       />
 
-      {/* Atmospheric Overlay */}
+      {/* LAYER 2: The Dark Gradient (To make text readable) */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to bottom, rgba(10, 15, 30, 0.4) 0%, rgba(10, 15, 30, 0.8) 50%, #0a0f1e 100%)',
+          background: 'linear-gradient(to bottom, rgba(5, 10, 20, 0.3) 0%, rgba(5, 10, 20, 0.8) 60%, #050a14 100%)'
         }}
       />
 
-      {/* Magical Particles: Floating Dust */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* LAYER 3: Simple Magic Particles (Optional but elegant) */}
+      <div className="absolute inset-0 opacity-30">
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-white/20"
+            className="absolute bg-yellow-200 rounded-full blur-[1px]"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
               width: Math.random() * 3 + 1,
               height: Math.random() * 3 + 1,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -120], // Move upwards
-              opacity: [0, 0.5, 0], // Fade in and out
+              y: [0, -100],
+              opacity: [0, 1, 0],
             }}
             transition={{
-              duration: 8 + Math.random() * 10, // Slow, varying speed
+              duration: Math.random() * 10 + 10,
               repeat: Infinity,
-              ease: 'linear',
-              delay: Math.random() * 5,
+              ease: "linear",
             }}
           />
         ))}
@@ -49,5 +44,3 @@ const HogwartsBackground = () => {
     </div>
   );
 };
-
-export default HogwartsBackground;

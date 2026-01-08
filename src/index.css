@@ -78,9 +78,9 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    @apply text-foreground antialiased overflow-x-hidden;
     font-family: 'Cormorant Garamond', serif;
-    background-color: transparent;
+    background-color: transparent !important;
     cursor: none;
   }
 

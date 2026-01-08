@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Wand2, BookOpen } from 'lucide-react';
 import MagicCursor from '@/components/MagicCursor';
-import DefinitiveHogwartsBackground from '@/components/DefinitiveHogwartsBackground';
+import { HogwartsBackground } from '@/components/HogwartsBackground';
 import FloatingShelf from '@/components/FloatingShelf';
 import GrimoireModal from '@/components/GrimoireModal';
 import LumosEntrance from '@/components/LumosEntrance';
@@ -123,7 +123,7 @@ const Index = () => {
             animate={{ opacity: 1, filter: 'brightness(1)' }}
             transition={{ duration: 2 }}
           >
-            <DefinitiveHogwartsBackground />
+            <HogwartsBackground />
           </motion.div>
         )}
       </AnimatePresence>
