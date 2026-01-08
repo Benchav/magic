@@ -1,8 +1,9 @@
 import { useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const PdfReader = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const src = searchParams.get("src") || "";
   const title = searchParams.get("title") || "Documento";
@@ -43,6 +44,14 @@ const PdfReader = () => {
     return `https://drive.google.com/uc?export=download&id=${id}`;
   }, [src]);
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <header className="sticky top-0 z-20 border-b border-gold/10 bg-background/80 backdrop-blur">
@@ -72,12 +81,13 @@ const PdfReader = () => {
                 Descargar
               </a>
             ) : null}
-            <Link
-              to="/"
+            <button
+              type="button"
+              onClick={handleBack}
               className="rounded-md border border-gold/20 px-3 py-1.5 font-cinzel text-sm text-parchment hover:border-gold/40"
             >
               Volver
-            </Link>
+            </button>
           </div>
         </div>
       </header>
