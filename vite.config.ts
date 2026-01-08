@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     VitePWA({
+      injectRegister: null,
       registerType: "autoUpdate",
       includeAssets: ["robots.txt"],
       manifest: {
@@ -33,7 +34,7 @@ export default defineConfig(({ mode }) => ({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest,txt}"] ,
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest,txt}"],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => url.pathname.startsWith("/ports/"),
